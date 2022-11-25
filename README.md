@@ -1,4 +1,4 @@
-# Watermark Program v2.1
+# Watermark Program v2.2
 
 How to use:
 
