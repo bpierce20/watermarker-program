@@ -13,10 +13,8 @@ CHANGES:
 v2.2
 -added Drag and Drop functionality
 -fixed a bug where the program would freeze upon trying to add a watermark to a saved image
+-view image is disabled for now
 
 v2.1
 -added the ability to change themes (Light, or Dark)
 -added the ability to type in your own watermark instead of the sample text
-
-KNOWN BUGS:
--After saving an image, you can no longer add another watermark to the image. Trying to do so will result in the application freezing.
