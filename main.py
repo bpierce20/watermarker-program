@@ -32,10 +32,12 @@ photo1 = Photos(filepath="none", isSaved=False, isWaterMarked=False)
 
 print(photo1.filepath)
 
+# Drag N Drop Functionality
+
 
 def get_path(event):
-    photo1.isWaterMarked = False
     photo1.isSaved = False
+
     save_button.state = "disabled"
     photo1.filepath = event.data
     print(photo1.filepath)
@@ -48,6 +50,10 @@ def get_path(event):
     window.image_label.img = final_img
 
     window.image_label.grid(column=0, row=1)
+
+    add_watermark_button.state = "normal"
+
+#
 
 
 window = TkinterDnD.Tk()
@@ -77,7 +83,7 @@ frame_right.dnd_bind('<<Drop>>', get_path)
 
 def open_image_button():
     photo1.isSaved = False
-    photo1.isWaterMarked = False
+
     save_button.state = "disabled"
     photo1.filepath = fd.askopenfilename()
     if photo1.filepath:
@@ -92,6 +98,7 @@ def open_image_button():
         window.image_label.img = final_img
 
         window.image_label.grid(column=0, row=1)
+        add_watermark_button.state = "normal"
 
 
 def change_appearance_mode(new_appearance_mode):
@@ -128,6 +135,7 @@ def save_image():
 
 
 def add_watermark():
+
     save_button.text_color_disabled = "white"
     save_button.state = "normal"
     dialog = customtkinter.CTkInputDialog(
@@ -159,6 +167,7 @@ def add_watermark():
         window.image_label.configure(image=final_img)
         window.image_label.img = final_img
         image1.close()
+        photo1.isWaterMarked = True
 
     elif select_pos_combobox.get() == "Top Left":
         if photo1.isSaved == True:
@@ -214,6 +223,7 @@ def add_watermark():
         window.image_label.configure(image=final_img)
         window.image_label.img = final_img
         image1.close()
+
 # Buttons
 
 
@@ -225,15 +235,15 @@ select_pos_combobox = customtkinter.CTkComboBox(
     master=frame_left, values=["Bottom Right", "Top Left", "Center"])
 select_pos_combobox.grid(column=0, row=4, pady=10)
 add_watermark_button = customtkinter.CTkButton(
-    master=frame_left, text="Add Watermark", command=add_watermark)
+    master=frame_left, text="Add Watermark", command=add_watermark, state="disabled", text_color_disabled="white")
 add_watermark_button.grid(column=0, row=1,)
 save_button = customtkinter.CTkButton(
     master=frame_left, text="Save Image", command=save_image, state="disabled", text_color_disabled="white")
 
 save_button.grid(column=0, row=2, padx=10, pady=10)
 view_image_button = customtkinter.CTkButton(
-    master=frame_left, text="View Image", )
-view_image_button.grid(column=0, row=3)
+    master=frame_left, text="View Image", state="disabled", text_color_disabled="white")
+view_image_button.grid(column=0, row=3,)
 change_appearance_mode_label = customtkinter.CTkLabel(
     master=frame_left, text="Theme")
 change_appearance_mode_label.grid(column=0, row=5)
